@@ -17,9 +17,20 @@ public class MaxCircularSum {
          System.out.println("Maximum circular sum is " +
                          maxCircularSum(a));	}
 
-	private static String maxCircularSum(int[] a) {
-		// TODO Auto-generated method stub
-		return null;
+	private static int maxCircularSum(int[] a) {
+
+		int maxSumSOfar = a[0];
+		int maxSumInlcuingCurrent = a[0];
+		for (int i = 1; i < a.length-1; i++) {
+			int p = maxSumInlcuingCurrent + a[i];
+			if(p<0){
+				maxSumInlcuingCurrent = p;
+			}
+			else if(maxSumInlcuingCurrent>maxSumSOfar)
+				maxSumSOfar = maxSumInlcuingCurrent;
+				
+		}
+		return 0;
 	}
 
 }
