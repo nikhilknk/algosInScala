@@ -11,7 +11,8 @@ import com.fursa.common.Node;
  *
  */
 public class MaximumSumLeafPath {
-
+	static int max = Integer.MIN_VALUE;
+	static Node targetLeaf = null;
 	/**
 	 * @param args
 	 */
@@ -24,19 +25,36 @@ public class MaximumSumLeafPath {
 	        tree.getRoot().getLeft().setLeft(new Node(8));
 	        tree.getRoot().getLeft().setLeft(new Node(-4));
 	        
-	        Node maxLeaf = getMaximumSumPathLeaf(tree);
+	        getMaximumSumPathLeaf(tree.getRoot(),0);
 	        
-	        int maxValue  = getMaximumLeafValue(tree,maxLeaf);
-	        System.out.println("Max Value is "+maxValue);
+	        getMaximumLeafPath(tree.getRoot());
+	        System.out.println("Max Value is "+max);
 		
 	}
 
-	private static int getMaximumLeafValue(BinaryTree tree, Node maxLeaf) {
-		return 0;
+	private static boolean getMaximumLeafPath(Node node) {
+		if(node == null) return false;
+		
+		if(node == targetLeaf || getMaximumLeafPath(node.getLeft()) || getMaximumLeafPath(node.getRight())){
+			System.out.println(node.getValue());
+			return true;
+		}
+		return false;
 	}
 
-	private static Node getMaximumSumPathLeaf(BinaryTree tree) {
-		return null;
+	private static void getMaximumSumPathLeaf(Node node,int current) {
+		if(node == null) return;
+		
+		current += node.getValue();
+		if(node.getRight() == null && node.getLeft() == null){
+			if(max < current){
+				targetLeaf = node;
+				max = current;
+			}
+				
+		}
+		getMaximumSumPathLeaf(node.getLeft(),current);
+		getMaximumSumPathLeaf(node.getRight(),current);
 	}
 
 }
