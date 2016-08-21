@@ -1,10 +1,9 @@
-import java.awt.List;
 import java.util.ArrayList;
 
 
 public class NumberToXPowerOfY {
 	public static void main(String[] args) {
-		int n = 1024000000;
+		int n = 625;
 
 		System.out.println("Answer is "+numberTopwer(n));
 
@@ -15,10 +14,14 @@ public class NumberToXPowerOfY {
 		java.util.List<Integer> factoryList = getFactorListArray(n);
 		for(int i : factoryList){
 
+			if(i == 1 || i== n)
+				continue;
 			int p = i;
 			while(p<=n){
 				if(p==n)
+					{
 					return true;
+					}
 				p = p*i;
 			}
 
