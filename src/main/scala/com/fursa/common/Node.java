@@ -13,6 +13,8 @@ public class Node {
 	private Node right;
 	public Node(int val){
 		value = val;
+		left = null;
+		right = null;
 	}
 	public int getValue() {
 		return value;
